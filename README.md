@@ -1,80 +1,123 @@
-# Movie Recommender System
+🎬 Movie Recommender System
+📌 Project Overview
 
-## 📌 Project Overview
+Recommender Systems provide personalized suggestions by predicting what a user might like based on past behavior. They are widely used in platforms like movie apps, music streaming, e-commerce, and search engines.
 
-Recommender Systems provide personalized suggestions for items that are most relevant to each user by predicting preferences according to user's past choices. They are used in various areas like movies, music, news, search queries, etc. These recommendations are made in two ways: 
+There are two major types of recommendation approaches:
 
-1. Collaborative filtering: Collaborative filtering makes recommendations based on user's past behavior and similar decisions made by other users to predict items user may be interested in. For example, if User A likes movies X and Y and User B likes Y and Z then system might recommend movie Z to User A.
-2. Content-based filtering: Content-based filtering recommends items based on the features of the items and the user's past preferences. For example, if a user likes action movies the system will recommend other action movies based on genres, actors or directors.
+1. Collaborative Filtering
+
+Makes recommendations using user behavior and similarities between users.
+
+Example:
+If User A likes movies X & Y, and User B likes Y & Z → Recommend Z to User A.
+
+2. Content-Based Filtering (used in this project)
+
+Recommends items based on their features (e.g., genre, actors, keywords).
+
+Example:
+If a user likes action movies → Recommend other action movies based on movie metadata.
+
+📊 Dataset Overview
+
+This project uses two datasets:
+
+file.tsv
+
+Movie_Id_Titles.csv
+
+After merging, the final dataset contains:
+
+Column Name	Description
+user_id	Unique ID for each user
+item_id	ID assigned to each movie
+rating	Rating given by the user
+timestamp	Timestamp of the rating
+title	Movie title
+🛠️ Techniques Used
+✅ Content-Based Filtering
+
+Recommends similar movies using:
+
+TF-IDF
+
+Count Vectorization
+
+Cosine Similarity
+
+Based on movie metadata and text processing.
+
+✅ Collaborative Filtering (if implemented)
+
+Suggests movies based on user-item interactions.
+
+Uses rating patterns to find similar users or movies.
+
+⚙️ Tools & Technologies
+
+Language: Python
+
+Environment: Jupyter Notebook
+
+Libraries Used:
+
+pandas, numpy — data processing
+
+scikit-learn — vectorization & similarity computation
+
+nltk — text cleaning (if used)
+
+pickle — saving similarity matrix (optional)
+
+streamlit / flask — for web interface (optional)
+
+🔍 Key Steps
+1. Data Cleaning
+
+Remove null values
+
+Handle duplicates
+
+Merge datasets
+
+2. Feature Engineering
+
+Create a tags column combining key features
+
+Apply CountVectorizer or TF-IDF
+
+3. Similarity Computation
+
+Compute cosine similarity between movies
+
+Generate similarity matrix
+
+4. Recommendation Function
+
+A function like:
+
+recommend("Avatar")
 
 
-## 📊 Dataset Overview
+Returns top N most similar movies.
 
-In this project we are using 2 datasets namely "file.tsv" and "Movie_Id_Titles.csv". We combine both the datasets into a single csv file which contains the following column names as attributes: 
+5. Optional UI
 
-| Column Name           | Description |
-|-----------------------|-------------|
-| **user_id**           | Unique ID for every row |
-| **item_id**           | Indicates the category to this movie belongs to |
-| **rating**            | Indicates the rating that particular movie has got |
-| **timestamp**         | Indicates the timestamp that rating |
-| **title**             | It states the name of the movie |
+Create a simple interface using:
 
----
+Streamlit
 
-## 🛠️ Techniques Used
+Flask
 
-### ✅ Content-Based Filtering
-- Recommends similar movies based on content features (e.g., genre, cast, description).
-- Uses techniques like:
-  - TF-IDF (Term Frequency-Inverse Document Frequency)
-  - Count Vectorization
-  - Cosine Similarity
+📈 Output
 
-### ✅ Collaborative Filtering (if implemented)
-- Suggests movies based on user ratings and behavior.
-- Uses user-item interactions to find similar users or movies.
+Input: recommend("Avatar")
 
----
+Output: List of similar movies ranked by similarity score
 
-## ⚙️ Tools & Technologies
+Optional charts like:
 
-- **Language:** Python
-- **Environment:** Jupyter Notebook
-- **Libraries Used:**
-  - `pandas`, `numpy` for data processing
-  - `scikit-learn` for vectorization and similarity computation
-  - `nltk` for text preprocessing (if applicable)
-  - `pickle` for model persistence
-  - `streamlit` or `flask` (if web deployment is involved)
+Genre distribution
 
----
-
-## 🔍 Key Steps
-
-1. **Data Cleaning**
-   - Removing nulls, duplicates
-   - Parsing JSON-like columns
-
-2. **Feature Engineering**
-   - Creating a “tags” field combining relevant text features
-   - Applying text vectorization (TF-IDF or Count Vectorizer)
-
-3. **Similarity Computation**
-   - Computing cosine similarity between movies
-
-4. **Recommendation Function**
-   - A function that takes a movie title and returns top N similar movies
-
-5. **Optional UI/Deployment**
-   - Creating a simple web interface using Streamlit or Flask to test the recommender
-
----
-
-## 📈 Output
-
-- A function (e.g., `recommend('Avatar')`) that returns similar movies
-- Ranked list based on similarity scores
-- Optional visualizations (e.g., popularity charts, genre distribution)
-
----
+Movie popularity
